@@ -16,6 +16,7 @@ import java.util.List;
 public class ApartTradeService {
     private final AptTradeClient aptTradeClient;
     private final ConstAptTrade constAptTrade;
+    private final ApartTradeRepository apartTradeRepository;
 
     public List<AptItem> getAptTradeList(AptTradeGetReq req) {
         AptTradeResponse response = aptTradeClient.getAptTrade(
@@ -25,6 +26,15 @@ public class ApartTradeService {
                 , req.getPageNo()
                 , req.getNumOfRows()
         );
+
+        if(response.getBody().getItems().size() > 0) {
+            for(AptItem item : response.getBody().getItems()) {
+                //AptItem >> AptTrade 바껴야한다.
+
+                //apartTradeRepository.save( ? );
+            }
+        }
+
         return response.getBody().getItems();
     }
 
