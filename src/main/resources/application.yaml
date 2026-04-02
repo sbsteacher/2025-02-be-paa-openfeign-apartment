@@ -1,3 +1,10 @@
+constants:
+  open-feign:
+    apt-trade:
+      url: http://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev
+      service-key: e38fad33ed011a99ea65b7b7cd5a85382d5a42404a201755347a51250c4fa298
+      produces: application/xml
+
 spring:
   application:
     name: paa
