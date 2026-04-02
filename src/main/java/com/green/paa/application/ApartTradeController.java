@@ -21,6 +21,7 @@ public class ApartTradeController {
 
     @GetMapping
     public List<AptItem> getAptTradeList(@ModelAttribute AptTradeGetReq req) {
+        log.info("req: {}", req);
         return apartTradeService.getAptTradeList(req);
     }
 }
