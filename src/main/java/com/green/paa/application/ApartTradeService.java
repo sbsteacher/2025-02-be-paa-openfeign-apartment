@@ -31,8 +31,9 @@ public class ApartTradeService {
         if(response.getBody().getItems().size() > 0) {
             for(AptItem item : response.getBody().getItems()) {
                 //AptItem >> AptTrade 바껴야한다.
-                //AptTrade aptTrade = new AptTrade(item);
-                //apartTradeRepository.save( ? );
+                AptTrade aptTrade = new AptTrade( item );
+                try { apartTradeRepository.save(aptTrade); }
+                catch (Exception e) {}
             }
         }
 

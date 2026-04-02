@@ -1,5 +1,6 @@
 package com.green.paa.entity;
 
+import com.green.paa.application.model.AptItem;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -24,8 +25,33 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class AptTrade {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public AptTrade(AptItem item) {
+        this.aptDong = item.getAptDong();
+        this.aptNm = item.getAptNm();
+        this.buildYear = item.getBuildYear();
+        this.buyerGbn = item.getBuyerGbn();
+        this.cdealDay = item.getCdealDay();
+        this.cdealType = item.getCdealType();
+        this.dealAmount = Long.parseLong(item.getDealAmount().replaceAll(",", "").trim());
+        this.dealDate = LocalDate.of(
+                Integer.parseInt(item.getDealYear()),
+                Integer.parseInt(item.getDealMonth()),
+                Integer.parseInt(item.getDealDay())
+        );
+        this.dealingGbn = item.getDealingGbn();
+        this.estateAgentSggNm = item.getEstateAgentSggNm();
+        this.excluUseAr = new BigDecimal(item.getExcluUseAr());
+        this.floor = (item.getFloor() != null && !item.getFloor().trim().isEmpty()) ? Integer.parseInt(item.getFloor().trim()) : null;
+        this.jibun = item.getJibun();
+        this.landLeaseholdGbn = item.getLandLeaseholdGbn();
+        this.rgstDate = item.getRgstDate();
+        this.roadNm = item.getRoadNm();
+        this.sggCd = item.getSggCd();
+        this.slerGbn = item.getSlerGbn();
+        this.umdNm = item.getUmdNm();
+    }
+
+    @Id    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "apt_dong", length = 50, nullable = false)
@@ -34,8 +60,8 @@ public class AptTrade {
     @Column(name = "apt_nm", length = 100, nullable = false)
     private String aptNm;
 
-    @Column(name = "build_year")
-    private Integer buildYear;
+    @Column(name = "build_year", length = 4)
+    private String buildYear;
 
     @Column(name = "buyer_gbn", length = 20)
     private String buyerGbn;
@@ -88,4 +114,5 @@ public class AptTrade {
     @CreatedDate
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
 }
