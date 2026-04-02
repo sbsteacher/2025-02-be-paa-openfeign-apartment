@@ -4,6 +4,7 @@ import com.green.paa.application.model.AptItem;
 import com.green.paa.application.model.AptTradeGetReq;
 import com.green.paa.application.model.AptTradeResponse;
 import com.green.paa.configuration.constants.ConstAptTrade;
+import com.green.paa.entity.AptTrade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class ApartTradeService {
         if(response.getBody().getItems().size() > 0) {
             for(AptItem item : response.getBody().getItems()) {
                 //AptItem >> AptTrade 바껴야한다.
-
+                //AptTrade aptTrade = new AptTrade(item);
                 //apartTradeRepository.save( ? );
             }
         }
